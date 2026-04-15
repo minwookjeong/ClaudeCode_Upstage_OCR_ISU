@@ -8,13 +8,13 @@ from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, UploadFile
 
+import settings
 from services.expense_store import append
 from services.ocr_service import run_ocr_pipeline
 
 router = APIRouter()
 
-UPLOAD_DIR = Path(__file__).parent.parent / "uploads"
-UPLOAD_DIR.mkdir(exist_ok=True)
+UPLOAD_DIR = settings.UPLOAD_DIR
 
 ALLOWED_SUFFIXES = {".jpg", ".jpeg", ".png", ".pdf"}
 MAX_FILE_BYTES = 10 * 1024 * 1024  # 10 MB

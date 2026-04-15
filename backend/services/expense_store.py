@@ -9,7 +9,9 @@ from pathlib import Path
 from threading import Lock
 from typing import Optional
 
-DATA_FILE = Path(__file__).parent.parent / "data" / "expenses.json"
+import settings
+
+DATA_FILE = settings.DATA_FILE
 _lock = Lock()
 
 
