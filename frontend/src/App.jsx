@@ -1,10 +1,12 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { ToastProvider } from './contexts/ToastContext'
 import Dashboard from './pages/Dashboard'
 import ExpenseDetail from './pages/ExpenseDetail'
 import UploadPage from './pages/UploadPage'
 
 export default function App() {
   return (
+    <ToastProvider>
     <BrowserRouter>
       <Routes>
         {/* 메인 대시보드 */}
@@ -20,5 +22,6 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
+    </ToastProvider>
   )
 }
