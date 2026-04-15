@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py \"C:/Users/ISU/Downloads/claude_ocr_1day/claude_ocr_1day/.claude/hooks/prd_sync.py\"",
+            "timeout": 10,
+            "statusMessage": "PRD 동기화 확인 중..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py \"C:/Users/ISU/Downloads/claude_ocr_1day/claude_ocr_1day/.claude/hooks/update_prd.py\"",
+            "timeout": 15,
+            "statusMessage": "PRD 자동 업데이트 중..."
+          }
+        ]
+      }
+    ]
+  }
+}
