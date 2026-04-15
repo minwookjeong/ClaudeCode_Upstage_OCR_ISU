@@ -4,6 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 load_dotenv()
 
@@ -34,6 +35,9 @@ from routers import expenses, summary, upload
 app.include_router(upload.router, prefix="/api")
 app.include_router(expenses.router, prefix="/api")
 app.include_router(summary.router, prefix="/api")
+
+# 업로드된 영수증 이미지를 프론트에서 직접 로드할 수 있도록 정적 파일 서빙
+app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
 
 @app.get("/")

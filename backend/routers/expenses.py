@@ -11,7 +11,7 @@ from typing import List, Optional
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from services.expense_store import delete, get_all, update
+from services.expense_store import delete, get_all, get_by_id, update
 
 router = APIRouter()
 
@@ -56,6 +56,15 @@ def list_expenses(
     - **to_date**: 종료일 YYYY-MM-DD (포함)
     """
     return get_all(from_date=from_date, to_date=to_date)
+
+
+@router.get("/expenses/{expense_id}")
+def get_expense(expense_id: str):
+    """ID로 지출 항목 단건을 조회합니다."""
+    expense = get_by_id(expense_id)
+    if expense is None:
+        raise HTTPException(status_code=404, detail="해당 지출 항목을 찾을 수 없습니다.")
+    return expense
 
 
 @router.delete("/expenses/{expense_id}")

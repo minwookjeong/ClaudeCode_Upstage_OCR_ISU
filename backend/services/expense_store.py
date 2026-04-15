@@ -62,6 +62,13 @@ def get_all(
     return sorted(data, key=lambda e: e.get("created_at", ""), reverse=True)
 
 
+def get_by_id(expense_id: str) -> Optional[dict]:
+    """id로 단건 조회합니다. 없으면 None 반환."""
+    with _lock:
+        data = _read()
+    return next((e for e in data if e["id"] == expense_id), None)
+
+
 def append(expense: dict) -> dict:
     """지출 항목을 파일에 추가합니다."""
     with _lock:

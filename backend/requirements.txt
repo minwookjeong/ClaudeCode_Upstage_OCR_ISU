@@ -16,3 +16,4 @@ pillow==12.2.0
 pdf2image==1.17.0
 # 유틸리티
 python-dotenv==1.2.2
+aiofiles==24.1.0
